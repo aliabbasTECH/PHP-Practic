@@ -35,15 +35,18 @@ if(isset($_POST['submit'])){
             $errors['ingredients']= 'Ingredieant must be comma separated list ';
         }
        }
-       
+    if(array_filter($errors)){     // it will detect that array is empty it runs the condition 
+        echo 'errors in the form';
+    }else {
+        header('Location:index.php');
+    }
    }
- 
 ?>
 
 <!DOCTYPE html>
 <html>
 
-<?php include("header.php"); ?>
+<?php include("templates/header.php"); ?>
 
      <section class="container grey-text">
       <h4 class="center">add a pizza</h4>
@@ -57,7 +60,7 @@ if(isset($_POST['submit'])){
          <input type="text" name="title"  value=<?php echo htmlspecialchars($title) ; ?>>
          <div class="red-text"><?php echo $errors['title'] ?></div>
         
-        <label>ingredients (coma seprated):</label>
+        <label>ingredients (comma seprated):</label>
          <input type="text" name="ingredients" value=<?php echo htmlspecialchars($ingredients);  ?>>
           <div class="red-text"><?php echo $errors['ingredients'] ?></div>
         <div class="center">
@@ -67,6 +70,6 @@ if(isset($_POST['submit'])){
      </section>
     
 
-<?php include("footer.php"); ?>
+<?php include("templates/footer.php"); ?>
 
 </html>
